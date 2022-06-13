@@ -20,7 +20,10 @@ const getAllBeers = () => {
 
 
   useEffect(() => {
-    // getAllBeers().then(() => console.log('hello'))
+    // getAllBeers().then((beers) => {
+    //     console.log(beers)
+    //     setBeers(beers)
+    // })
     getAllBeers()
   },[])
 
@@ -31,7 +34,7 @@ const getAllBeers = () => {
         <Navbar/>
             {beers && (
                 beers.map((beer) => (
-                    <Link to={`/beers/${beer._id}`} key={beer._id}>
+                    <Link to={`./${beer._id}`} key={beer._id}>
                     <div>
                         <div>
                             <img src={beer.image_url} alt="beer" />

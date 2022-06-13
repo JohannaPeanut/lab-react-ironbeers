@@ -5,6 +5,7 @@ const CreateBeer = () => {
   return (
     <div>
         <Navbar/>
+        create beer
     </div>
   )
 }

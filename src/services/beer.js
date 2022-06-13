@@ -6,6 +6,13 @@ const apiURL = axios.create({
 
 export const getAllBeers = () => {
   apiURL.get("/").then((response) => {
-    console.log(response.data);
+    //console.log(response.data);
+    return response.data;
+  });
+};
+
+export const beerDetail = (beerId) => {
+  apiURL.get(`/${beerId}`).then((response) => {
+    return response.data;
   });
 };
