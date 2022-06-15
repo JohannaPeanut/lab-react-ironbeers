@@ -12,8 +12,8 @@ function App() {
           <Route path='/' element={<HomePage/>}/>
           <Route path='/beers' element={<AllBeers/>}/>
           <Route path='/new-beer' element={<CreateBeer/>}/>
-          <Route path='/beers/:beerId' element={<BeerDetail random={false}/>}/>
-          <Route path='/random-beer' element={<BeerDetail random={true}/>}/>
+          <Route path='/beers/:beerId' element={<BeerDetail />}/>
+          <Route path='/random-beer' element={<BeerDetail random/>}/>
         </Routes>
       </BrowserRouter>
     </div>

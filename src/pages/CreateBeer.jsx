@@ -10,8 +10,9 @@ const [beer, setBeer] = useState({name:'', tagline: '', description: '', first_b
 
 const navigate = useNavigate()
 
-const handleBeerCreation = () => {
-
+const handleBeerCreation = (event) => {
+  event.preventDefault();
+  
   const apiURL = axios.create({
     baseURL: "https://ih-beers-api2.herokuapp.com/beers",
       });
@@ -19,19 +20,16 @@ const handleBeerCreation = () => {
     apiURL.post('/new', beer).then((response) => {
         console.log(response )
         console.log(beer)
-        //const id = response.data._id
-        //navigate(`/${id}`)
-        
+        //const id = response.data._id // <--not working as response is not the new beer object
+        //navigate(`/beers/${id}`)
+        navigate('/')
       });
-    //beerDetail(beerId).then((data) => console.log(data))
-
-
 }
 
   return (
     <div>
         <Navbar/>
-        <form>
+        <form onSubmit={handleBeerCreation}>
           <label htmlFor="input">name</label>
           <input onChange={(event) => setBeer({...beer, name : event.target.value})} value={beer.name} type="text" /><br/>
           <label htmlFor="input">tagline</label>
@@ -46,7 +44,7 @@ const handleBeerCreation = () => {
           <input onChange={(event) => setBeer({...beer, attenuation_level: event.target.value})} value={beer.attenuation_level} type="number" /><br/>
           <label htmlFor="input">your name</label>
           <input onChange={(event) => setBeer({...beer, contributed_by: event.target.value})} value={beer.contributed_by} type="text" /><br></br>
-          <button onClick={handleBeerCreation}>Create new beer</button>
+          <button >Create new beer</button>
         </form>
     </div>
   )

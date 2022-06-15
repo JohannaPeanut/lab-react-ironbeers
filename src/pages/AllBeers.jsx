@@ -5,7 +5,9 @@ import axios from "axios";
 // import { getAllBeers } from '../services/beer.js'
 
 const AllBeers = () => {
-  const [ beers, setBeers] = useState()
+
+  const [ query, setQuery ] = useState('')
+  const [ beers, setBeers] = useState([])
 
   const apiURL = axios.create({
   baseURL: "https://ih-beers-api2.herokuapp.com/beers",
@@ -14,10 +16,20 @@ const AllBeers = () => {
 const getAllBeers = () => {
   apiURL.get("/").then((response) => {
     setBeers(response.data)
-    console.log(response.data )
   });
 };
 
+const queryBeers = () => {
+  apiURL.get(`/search?q=${query}`).then((response) => {
+    setBeers(response.data)
+  });
+};
+
+const handleQueryChange = (event) => {
+  console.log(event.target.value)
+  setQuery(event.target.value)
+  queryBeers()
+}
 
   useEffect(() => {
     // getAllBeers().then((beers) => {
@@ -32,6 +44,7 @@ const getAllBeers = () => {
   return (
     <div>
         <Navbar/>
+        <input value={query} onChange={handleQueryChange} placeholder='What beer are you searching for?' />
             {beers && (
                 beers.map((beer) => (
                     <Link to={`./${beer._id}`} key={beer._id}>
